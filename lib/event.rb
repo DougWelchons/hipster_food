@@ -21,4 +21,26 @@ class Event
       truck.sell_item?(item)
     end
   end
+
+  def total_inventory
+    total = Hash.new
+    Item.all.each do |item|
+      total[item] = inventory(item)
+    end
+    total
+  end
+
+  def inventory(item)
+    item_inventory = {
+                      quantity: 0,
+                      food_trucks: []
+                      }
+    @food_trucks.map do |truck|
+      if truck.sell_item?(item)
+        item_inventory[:quantity] += truck.check_stock(item)
+        item_inventory[:food_trucks] << truck
+      end
+    end
+    item_inventory
+  end
 end
