@@ -13,4 +13,8 @@ class FoodTruck
   def stock(item, amount)
     @inventory[item.name] += amount
   end
+
+  def sell_item?(item)
+    @inventory[item.name] > 0
+  end
 end
