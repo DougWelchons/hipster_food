@@ -42,16 +42,18 @@ class FoodTruckTest < Minitest::Test
     assert_equal true, food_truck.sell_item?(item1)
     assert_equal false, food_truck.sell_item?(item2)
   end
-end
 
-# pry(main)> event.food_trucks_that_sell(item4)
-# #=> [#<FoodTruck:0x00007fe1349bed40...>]
-#
-# pry(main)> food_truck1.potential_revenue
-# #=> 148.75
-#
-# pry(main)> food_truck2.potential_revenue
-# #=> 345.00
-#
-# pry(main)> food_truck3.potential_revenue
-# #=> 243.75
+  def test_it_can_return_potential_revenue
+    food_truck = FoodTruck.new("Rocky Mountain Pies")
+    item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
+    item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
+
+    assert_equal 0, food_truck.check_stock(item1)
+
+    food_truck.stock(item1, 30)
+    food_truck.stock(item2, 12)
+    food_truck.stock(item1, 25)
+
+    assert_equal 148.75, food_truck1.potential_revenue
+  end
+end
