@@ -54,6 +54,6 @@ class FoodTruckTest < Minitest::Test
     food_truck.stock(item2, 12)
     food_truck.stock(item1, 25)
 
-    assert_equal 148.75, food_truck1.potential_revenue
+    assert_equal 236.25, food_truck.potential_revenue
   end
 end
