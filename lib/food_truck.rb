@@ -12,7 +12,7 @@ class FoodTruck
   end
 
   def stock(item, amount)
-    @item_price[item.name] = item.price[1..-1].to_f
+    @item_price[item] = item.price[1..-1].to_f
     @inventory[item.name] += amount
   end
 

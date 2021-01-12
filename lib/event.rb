@@ -43,4 +43,17 @@ class Event
     end
     item_inventory
   end
+
+  def overstock
+    Item.all.find_all do |item|
+      inventory(item)[:quantity] > 50 &&
+      inventory(item)[:food_trucks].count > 1
+    end
+  end
+
+  def sorted_item_list
+    total_inventory.map do |item, _inventory|
+      item.name
+    end.sort
+  end
 end
